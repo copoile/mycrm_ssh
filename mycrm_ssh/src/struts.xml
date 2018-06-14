@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 配置文件上传的大小 ,其单位为字节，200m-->
+	<!-- 如超出大小限制，Struts2返回的字符串为input，可以<result name="input">/....</result>进行页面跳转 -->
+	<constant name="struts.multipart.maxSize" value="209715200"></constant>
+
+	<package name="demo1" extends="struts-default" namespace="/">
+	<!-- 这里的class写的是spring核心文件bean的id -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="loginsuccess">/index.htm</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		
+		<action name="customer_*" class="customerAction" method="{1}">
+			<result name="toAddPage">/jsp/customer/add.jsp</result>
+			<result name="success">/jsp/success.jsp</result>
+			<result name="list">/jsp/customer/list.jsp</result>
+			<result name="toUpdatePage">/jsp/customer/edit.jsp</result>
+			<!-- 跳转action -->
+			<result name="update" type="redirectAction">customer_list</result>
+			<!-- 分页 -->
+			<result name="listPage">/jsp/customer/listpage.jsp</result>
+		</action>
+		
+		<action name="linkman_*" class="linkmanAction" method="{1}">
+			<result name="toAddPage">/jsp/linkman/add.jsp</result>
+			<result name="success">/jsp/success.jsp</result>
+			<result name="input">/jsp/error.jsp</result>
+			<result name="list">/jsp/linkman/list.jsp</result>
+		</action>
+		
+		<action name="visit_*" class="visitAction" method="{1}">
+			<result name="toAddPage">/jsp/visit/add.jsp</result>
+			<result name="success">/jsp/success.jsp</result>
+			<result name="list">/jsp/visit/list.jsp</result>
+		</action>
+		
+	</package>
+
+</struts>
+
+
+
